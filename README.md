@@ -6,7 +6,7 @@
 
 ### Learn SQL through tutorials
 - [SQL Teaching](https://www.sqlteaching.com/)
-- [W3schools - SQL](https://www.w3schools.com/sql/default.aspWsSchool - SQL)
+- [W3schools - SQL](https://www.w3schools.com/sql/)
 - [Khan Academy - SQL](https://www.khanacademy.org/computing/computer-programming/sql)
 - [SQL Zoo - SQL Tutorial](https://sqlzoo.net/wiki/SQL_Tutorial)
 - [SQLBolt](https://sqlbolt.com/lesson/select_queries_introduction)
