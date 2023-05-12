@@ -6,12 +6,12 @@ CREATE TABLE student(
 );
 
 /* row operations */
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 101, “John”, “Thailand”);
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 201, “Mary”, “Indonesia”);
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 202, “Amir”, “Singapore”);
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 203, “Jane”, “Singapore”);
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 204, “Ali”, “Malaysia”);
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 205, “Wong”, “Malaysia”);
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 101, 'John', 'Thailand');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 201, 'Mary', 'Indonesia');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 202, 'Amir', 'Singapore');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 203, 'Jane', 'Singapore');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 204, 'Ali', 'Malaysia');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 205, 'Wong', 'Malaysia');
 
 
 /* unique column, no empty cells */
@@ -32,28 +32,28 @@ ALTER TABLE student RENAME TO student_old2;
 CREATE TABLE student(
 	student_id int PRIMARY KEY,
 	student_name varchar(20) NOT NULL,
-	country_of_origin varchar(30) NOT NULL,
+	country_of_origin varchar(30) NOT NULL
 );
 INSERT INTO student 
 SELECT * FROM student_old2;
 
 /* foreign key */
-CREATE TABLE student subject (
+CREATE TABLE student_subject (
 	stud_id int,
 	subject varchar(20),
-	test_score int,
+	test_score int
 );
 
-INSERT INTO student_subject VALUES (201,"Math",46);
-INSERT INTO student_subject VALUES (201,"Accounting",78);
-INSERT INTO student_subject VALUES (202,"Math,67);
-INSERT INTO student_subject VALUES (202,"Accounting",52);
-INSERT INTO student_subject VALUES (203,"Art",97);
-INSERT INTO student_subject VALUES (203,’"Accounting",55);
-INSERT INTO student_subject VALUES (204,"Art",64);
-INSERT INTO student_subject VALUES (204,"Math’,80);
-INSERT INTO student_subject VALUES (205,"Art",71);
-INSERT INTO student_subject VALUES (205,"Accounting",50);
+INSERT INTO student_subject VALUES (201,'Math',46);
+INSERT INTO student_subject VALUES (201,'Accounting',78);
+INSERT INTO student_subject VALUES (202,'Math',67);
+INSERT INTO student_subject VALUES (202,'Accounting',52);
+INSERT INTO student_subject VALUES (203,'Art',97);
+INSERT INTO student_subject VALUES (203,'Accounting',55);
+INSERT INTO student_subject VALUES (204,'Art',64);
+INSERT INTO student_subject VALUES (204,'Math',80);
+INSERT INTO student_subject VALUES (205,'Art',71);
+INSERT INTO student_subject VALUES (205,'Accounting',50);
 
 ALTER TABLE student_subject RENAME TO student_subject_old; 
 CREATE TABLE student_subject(
@@ -65,7 +65,19 @@ CREATE TABLE student_subject(
 INSERT INTO student_subject 
 SELECT * FROM student_subject_old;
 
+
+
+
 /*union all*/
+CREATE TABLE acquired_student(
+	stud_id int,
+	subject varchar(20) NOT NULL,
+	test_score int NOT NULL,
+	FOREIGN KEY(stud_id) REFERENCES student(student_id)
+);
+
+
+
 SELECT student_id, student_name, country_of_origin FROM student 
 UNION ALL
 SELECT student_id, student_name, country_of_origin FROM acquired_student;
