@@ -1,5 +1,12 @@
 # SQL Resources
 
+"college.db" and "python_to_database.ipynb" were prepared by John Wong. (Thanks John!)  
+"college_queries.sql" are for the DB Browser/sqlite3 exercises.   
+
+
+The following are links to useful SQL-related resources.
+
+
 ### Learn or Challenge yourself on SQL through Games
 - [SQL Learning Game - Lost At SQL](https://lost-at-sql.therobinlord.com/)
 
