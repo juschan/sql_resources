@@ -70,13 +70,13 @@ SELECT * FROM student_subject_old;
 
 /*union all*/
 CREATE TABLE acquired_student(
-	stud_id int,
-	subject varchar(20) NOT NULL,
-	test_score int NOT NULL,
-	FOREIGN KEY(stud_id) REFERENCES student(student_id)
+	student_id int PRIMARY KEY,
+	student_name varchar(20) NOT NULL,
+	country_of_origin varchar(30) NOT NULL
 );
-
-
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 301, 'Meili', 'Thailand');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 302, 'Zelda', 'France');
+INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 303, 'Oscar', 'Germany');
 
 SELECT student_id, student_name, country_of_origin FROM student 
 UNION ALL
