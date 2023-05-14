@@ -13,9 +13,26 @@ INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 203, 
 INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 204, 'Ali', 'Malaysia');
 INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 205, 'Wong', 'Malaysia');
 
+/* the following also works */
+INSERT INTO student VALUES 
+( 101, 'John', 'Thailand'),
+( 201, 'Mary', 'Indonesia');
+( 202, 'Amir', 'Singapore');
+( 203, 'Jane', 'Singapore');
+( 204, 'Ali', 'Malaysia');
+( 205, 'Wong', 'Malaysia');
+
+
+/* update, delete rows */
+UPDATE student 
+SET country_of_origin = 'Malaysia'
+WHERE student_id = 101;
+
+DELETE FROM student 
+WHERE student_id = 101;
+
 
 /* unique column, no empty cells */
-
 ALTER TABLE student RENAME TO student_old; 
 CREATE TABLE student(
 	student_id int UNIQUE NOT NULL,
@@ -66,21 +83,35 @@ INSERT INTO student_subject
 SELECT * FROM student_subject_old;
 
 
-
-
 /*union all*/
 CREATE TABLE acquired_student(
 	student_id int PRIMARY KEY,
 	student_name varchar(20) NOT NULL,
 	country_of_origin varchar(30) NOT NULL
 );
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 301, 'Meili', 'Thailand');
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 302, 'Zelda', 'France');
-INSERT INTO student (student_id, student_name, country_of_origin) VALUES ( 303, 'Oscar', 'Germany');
+INSERT INTO acquired_student (student_id, student_name, country_of_origin) VALUES ( 301, 'Meili', 'Thailand');
+INSERT INTO acquired_student (student_id, student_name, country_of_origin) VALUES ( 302, 'Zelda', 'France');
+INSERT INTO acquired_student (student_id, student_name, country_of_origin) VALUES ( 303, 'Oscar', 'Germany');
 
 SELECT student_id, student_name, country_of_origin FROM student 
 UNION ALL
 SELECT student_id, student_name, country_of_origin FROM acquired_student;
+
+/* because student and acquired student have columns created in the same order, this works too*/
+SELECT * FROM student 
+UNION ALL
+SELECT * FROM acquired_student;
+
+/*Save union all results in a table*/
+CREATE TABLE all_student AS 
+SELECT * FROM student WHERE 1=2;
+
+INSERT INTO all_student 
+SELECT * FROM 
+(SELECT * FROM student 
+UNION ALL
+SELECT * FROM acquired_student);
+
 
 /* views */
 CREATE VIEW monitor_students AS
